@@ -5,7 +5,7 @@ Simple command line habit tracking app
 * clone this repo to your local folder
 ```bash
 git clone https://github.com/takavarasha-desire/habittracker1
-cd habittracker1
+cd habittracker1_1
 ```
 * make your virtualenv
 ```bash
