@@ -8,6 +8,19 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from config import DB_URI
 
+
+class HabitTrackerError(Exception):
+    pass
+
+
+class HabitNotCreated(HabitTrackerError):
+    pass
+
+
+class HabitNotDueForCompletion(HabitTrackerError):
+    pass
+
+
 Base = declarative_base()
 
 
