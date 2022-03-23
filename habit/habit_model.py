@@ -17,10 +17,6 @@ class HabitNotCreated(HabitTrackerError):
     pass
 
 
-class HabitNotDueForCompletion(HabitTrackerError):
-    pass
-
-
 Base = declarative_base()
 
 
