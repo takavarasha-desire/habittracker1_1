@@ -1,5 +1,5 @@
 from habit.habit_model import Habit, HabitHistory, HabitNotCreated
-from habit.habit_model import HabitNotDueForCompletion
+import click
 
 
 def complete(habitid, session):
@@ -26,7 +26,12 @@ def complete(habitid, session):
                                 h.streak, h.date_broken, h.broken_count,
                                 h.next_run)
             hist_id = session.add(hist)
+            click.echo(f"too late to complete Habit {h.habitid}, habit broken"
+                       f" fields have been updated instead.")
+            session.commit()
+            session.close()
             return hist_id
+
         elif h.can_complete:
             h.complete()  # works only if can_complete is True
 
@@ -35,9 +40,12 @@ def complete(habitid, session):
                                 h.streak, h.date_broken, h.broken_count,
                                 h.next_run)
             hist_id = session.add(hist)
+            click.echo(f"Habit {h.habitid} successfully completed!")
+            session.commit()
+            session.close()
             return hist_id
-        session.commit()
-        session.close()
+        else:
+            click.echo(f"Habit {h.habitid} is not due for completion yet")
+
     except AttributeError:
         raise HabitNotCreated
-
