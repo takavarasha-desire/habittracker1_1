@@ -1,4 +1,5 @@
 import pytest
+from datetime import datetime, timedelta
 from habit.habit_model import Habit, HabitHistory, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -21,8 +22,13 @@ def datasett(setup_databasee):
     session = setup_databasee
 
     # create habits
-    h1 = Habit('walking', 'Daily')
-    session.add(h1)
+    overdue_habit = Habit('walking', 'Daily')
+    overdue_habit.next_run = datetime.now() - timedelta(days=1)
+    due_habit = Habit('work_out', 'Daily')
+    due_habit.next_run = datetime.now()
+
+    session.add(overdue_habit)
+    session.add(due_habit)
     session.commit()
     yield session
 
@@ -32,5 +38,5 @@ def test_databasee(datasett):
     session = datasett
 
     # Basic checking
-    assert len(session.query(Habit).all()) == 1
+    assert len(session.query(Habit).all()) == 2
     assert len(session.query(HabitHistory).all()) == 0
