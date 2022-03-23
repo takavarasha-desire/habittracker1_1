@@ -6,7 +6,7 @@ def complete(habitid, session):
     """
         Mark a habit with the given habitid as completed and record the
         completion in the database. This method checks if the next_run date
-        is less than or equal to datetime.now before committing the completion
+        is less than or equal to datetime.now() before committing the completion
         data to the Habit history table.
 
         Because the schedule method is called with the complete method and the
