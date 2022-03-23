@@ -1,6 +1,8 @@
 # Habit tracker app
 ## Introduction
-Simple command line habit tracking app
+Simple command line habit tracking app design project for the
+course  DLBDSOOFPP01 through IU International University of
+Applied Sciences.
 ## Installation
 * clone this repo to your local folder
 ```bash
@@ -23,7 +25,7 @@ source env/Scripts/activate
 ```
 * install package 
 ```bash
-pip install .
+pip install -r requirements.txt
 ```
 * Done!
 
