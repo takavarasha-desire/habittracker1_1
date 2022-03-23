@@ -20,7 +20,7 @@ def complete(habitid, session):
         q = session.query(Habit)
         h = q.get(habitid)
         if h.overdue:
-            h.check_if_broken_and_update()  # works only if overdue is True
+            h.broken_habit_update()  # works only if overdue is True
             hist = HabitHistory(habitid, h.activity, h.periodicity,
                                 h.creation_date, h.completed, h.completed_at,
                                 h.streak, h.date_broken, h.broken_count,

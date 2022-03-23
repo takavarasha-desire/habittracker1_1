@@ -83,7 +83,7 @@ class Habit(Base):
         self.broken_count += 1
         self.date_broken = datetime.today()
 
-    def check_if_broken_and_update(self):  # checked on next completion
+    def broken_habit_update(self):  # checked on next completion
         self._broken()
         self._schedule_next_run()
 
