@@ -5,16 +5,16 @@ import click
 def complete(habitid, session):
     """
         Mark a habit with the given habitid as completed and record the
-        completion in the database. This method checks if the next_run date
-        is less than or equal to datetime.now() before committing the completion
-        data to the Habit history table.
+        completion in the database. This method checks if the next_run
+        date is less than or equal to datetime.now() before committing
+        the completion data to the Habit history table.
 
-        Because the schedule method is called with the complete method and the
-        :check_if_broken_method:. If a user fails to complete a habit with in a
-        period of one day after the scheduled date. calling this method would
-        increment broken count by one and reschedule the next_run date, Thus when
-        the h.complete is called in the try block `habit not due for completion
-        exception` is raised.
+        Because the schedule method is called with the complete method
+        and the :check_if_broken_method:. If a user fails to complete a
+        habit with in a period of one day after the scheduled date. calling
+        this method would increment broken count by one and reschedule the
+        next_run date, Thus when the h.complete is called in the try block
+        habit not due for completion exception` is raised.
         """
     try:
         q = session.query(Habit)
