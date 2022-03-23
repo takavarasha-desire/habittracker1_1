@@ -16,9 +16,9 @@ def complete(habitid, session):
         the h.complete is called in the try block `habit not due for completion
         exception` is raised.
         """
-    q = session.query(Habit)
-    h = q.get(habitid)
     try:
+        q = session.query(Habit)
+        h = q.get(habitid)
         if h.overdue:
             h.check_if_broken_and_update()  # works only if overdue is True
             hist = HabitHistory(habitid, h.activity, h.periodicity,
@@ -27,17 +27,17 @@ def complete(habitid, session):
                                 h.next_run)
             hist_id = session.add(hist)
             return hist_id
-        if h.can_complete:
+        elif h.can_complete:
             h.complete()  # works only if can_complete is True
+
             hist = HabitHistory(habitid, h.activity, h.periodicity,
                                 h.creation_date, h.completed, h.completed_at,
                                 h.streak, h.date_broken, h.broken_count,
                                 h.next_run)
             hist_id = session.add(hist)
-            session.commit()
-            session.close()
-        else:
-            raise HabitNotDueForCompletion
+            return hist_id
+        session.commit()
+        session.close()
     except AttributeError:
         raise HabitNotCreated
-    return hist_id
+

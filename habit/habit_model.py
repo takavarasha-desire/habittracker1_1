@@ -72,16 +72,14 @@ class Habit(Base):
 
     @property
     def overdue(self) -> bool:
-        today = datetime(2022, 3, 25, 10, 0)
         assert self.next_run is not None
-        return (self.next_run + timedelta(days=1)) <= today
+        return (self.next_run + timedelta(days=1)) <= datetime.now()
 
     def complete(self):
-        if self.can_complete:
-            self.streak += 1
-            self.completed = True
-            self.completed_at = datetime.now()
-            self._schedule_next_run()
+        self.streak += 1
+        self.completed = True
+        self.completed_at = datetime.now()
+        self._schedule_next_run()
 
     def _broken(self):
         self.completed = False
@@ -90,9 +88,8 @@ class Habit(Base):
         self.date_broken = datetime.today()
 
     def check_if_broken_and_update(self):  # checked on next completion
-        if self.overdue:
-            self._broken()
-            self._schedule_next_run()
+        self._broken()
+        self._schedule_next_run()
 
     def _schedule_next_run(self) -> None:  # this method must be called upon creation
         if self.periodicity == "Daily":
