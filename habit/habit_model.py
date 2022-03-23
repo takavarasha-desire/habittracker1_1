@@ -61,18 +61,20 @@ class Habit(Base):
                "completed='{self.completed}'," \
                "completed_at='{self.completed_at})"\
                "streak='{self.streak}',"\
+               "date_broken='{self.date_broken}'"\
                "broken_count='{self.broken_count}'"\
                "next_run='{self.next_run})".format(self=self)
 
     @property
     def can_complete(self) -> bool:
         assert self.next_run is not None, "must run _schedule_next_run before"
-        return datetime.now() >= self.next_run
+        return self.next_run <= datetime.now()
 
     @property
     def overdue(self) -> bool:
+        today = datetime(2022, 3, 25, 10, 0)
         assert self.next_run is not None
-        return datetime.now() >= self.next_run + timedelta(days=1)
+        return (self.next_run + timedelta(days=1)) <= today
 
     def complete(self):
         if self.can_complete:

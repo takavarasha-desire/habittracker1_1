@@ -26,10 +26,9 @@ def complete(habitid, session):
                                 h.streak, h.date_broken, h.broken_count,
                                 h.next_run)
             hist_id = session.add(hist)
-            session.commit()
-            session.close()
-        h.complete()  # works only if can_complete is True
+            return hist_id
         if h.can_complete:
+            h.complete()  # works only if can_complete is True
             hist = HabitHistory(habitid, h.activity, h.periodicity,
                                 h.creation_date, h.completed, h.completed_at,
                                 h.streak, h.date_broken, h.broken_count,
