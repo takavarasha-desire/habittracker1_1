@@ -109,7 +109,7 @@ def ls():
 
 
 @analyse.command(help="get history for all habits")
-def ghist():
+def all_habits_history():
     rows = analysis.get_history(session)
     for row in rows:
         click.echo(row)
@@ -117,7 +117,7 @@ def ghist():
 
 @analyse.command(help="get history for a particular habit")
 @click.argument("habitid", required=True)
-def ghisth(habitid):
+def get_habit_history(habitid):
     rows = analysis.get_history_for_a_habit(session, habitid)
     for row in rows:
         click.echo(row)
