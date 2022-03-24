@@ -4,7 +4,7 @@ Simple command line habit tracking app design project for the
 course  DLBDSOOFPP01 through IU International University of
 Applied Sciences.
 The application allow a user to create habits which they would
-like to track (see usage below). Once created scheduling function
+like to track (see usage below). Once created, a scheduling function
 in the habits class is called to calculate the next date that the
  habit should be completed depending on the periodicity chosen.
 Created habits are considered overdue when a period of 1 day
