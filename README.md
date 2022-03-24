@@ -58,6 +58,10 @@ Completing a habit
 ```bash
 cll complete <habitid>
 ```
+* Getting habitid (to see all habits with their habitids)
+```bash
+cll analyse show
+```
 Deleting a habit
 ```bash
 cll delete <habitid>
