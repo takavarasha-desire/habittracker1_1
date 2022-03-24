@@ -39,6 +39,7 @@ Getting help
 cll --help
 ```
 Creating a new habit
+* Periodicity can be Daily, Weekly, Monthly, or Annually (case-sensitive)
 ```bash
 cll create <activity> <periodicity>
 ```
