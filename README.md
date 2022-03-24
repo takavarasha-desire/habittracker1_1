@@ -3,9 +3,10 @@
 Simple command line habit tracking app design project for the
 course  DLBDSOOFPP01 through IU International University of
 Applied Sciences.
-A scheduling function in the habits class is used to calculate
-the next date that the habit should be completed depending on
-the periodicity chosen.
+The application allow a user to create habits which the would
+like to track (see usage below). Once created scheduling function
+in the habits class is called to calculate the next date that the
+ habit should be completed depending on the periodicity chosen.
 Created habits are considered overdue when a period of 1 day
 has lapsed after the next_run date for all periodic options.
 
